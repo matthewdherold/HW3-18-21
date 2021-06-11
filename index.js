@@ -1,6 +1,5 @@
-const mysql = require('mysql');
 const inquirer = require('inquirer');
-const connection = require('./connection');
+const { sqlQuery , init } = require('./sqlQuery');
 
 mainMenu = () => {
     inquirer
@@ -22,7 +21,7 @@ mainMenu = () => {
             viewMenu();
             break;
         case 'Update employee roles':
-            updateMenu();
+            sqlQuery('updateEmployee');
             break;
 
         default:
@@ -30,13 +29,66 @@ mainMenu = () => {
             break;
     };
 });
-
 };
 
-connection.connect((err) => {
-    if (err) {
-        console.log(err);
-    } else {
-        mainMenu();
-    }
-});
+const addMenu = () => {
+    inquirer
+    .prompt({
+      name: 'action',
+      type: 'list',
+      message: 'What type of data would you like to add?',
+      choices: [
+          'Add a department',
+          'Add a role',
+          'Add an employee'
+        ]
+    }).then((choice) => {
+        switch (choice.action) {
+            case 'Add a department':
+                sqlQuery('addDepartment');
+                break;
+            case 'Add a role':
+                sqlQuery('addRole');
+                break;
+            case 'Add an employee':
+                sqlQuery('addEmployee');
+                break;
+
+            default:
+                console.log('invalid response:', choice);
+                break;
+        }
+    })
+}
+
+const viewMenu = () => {
+    inquirer
+    .prompt({
+      name: 'action',
+      type: 'list',
+      message: 'What data would you like to view?',
+      choices: [
+        'View departments',
+        'View roles',
+        'View employees'
+      ]
+    }).then((choice) => {
+        switch (choice.action) {
+            case 'View departments':
+                sqlQuery('viewDepartments');
+                break;
+            case 'View roles':
+                sqlQuery('viewRoles');
+                break;
+            case 'View employees':
+                sqlQuery('viewEmployees');
+                break;
+        
+            default:
+                console.log('invalid response:', choice);
+                break;
+        }
+    })
+}
+
+init();

@@ -10,7 +10,8 @@ mainMenu = () => {
       choices: [
         'Add a department, role, or employee',
         'View departments, roles, employees',
-        'Update employee roles'
+        'Update employee roles',
+        'Quit application'
       ]
 }).then((choice) => {
     switch (choice.action) {
@@ -23,6 +24,8 @@ mainMenu = () => {
         case 'Update employee roles':
             sqlQuery('updateEmployee');
             break;
+        case 'Quit application':
+            process.exit();
 
         default:
             console.log('invalid response:', choice);

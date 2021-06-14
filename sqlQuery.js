@@ -14,11 +14,13 @@ const sqlQuery = (request, data) => {
         }).then((choice) => {
             query = `INSERT INTO department SET ?`;
             let newDep = {
-                name: choice
+                name: choice.action
             }
             connection.query(query, newDep, (err, res) => {
                 if (err) throw err;
-                else console.log(res)
+                else 
+                console.log(res);
+                mainMenu();
         })});
             break;
         case 'addRole':
@@ -49,6 +51,7 @@ const sqlQuery = (request, data) => {
                 connection.query(query, newRole, (err, res) => {
                     if (err) throw err;
                     else console.log(res)
+                    mainMenu();
         })});
             break;
         case 'addEmployee':
@@ -98,6 +101,7 @@ const sqlQuery = (request, data) => {
                 connection.query(query, newEmp, (err, res) => {
                     if (err) throw err;
                     else console.log(res)
+                    mainMenu();
             });
         })});
             break;
@@ -105,19 +109,22 @@ const sqlQuery = (request, data) => {
         query = `SELECT * FROM department`;
         connection.query(query, (err, res) => {
         if (err) throw err;
-        else console.table(res)});
+        else console.table(res);
+        mainMenu()});
             break;
         case 'viewRoles':
         query = `SELECT * FROM role`;
         connection.query(query, (err, res) => {
         if (err) throw err;
-        else console.table(res)});
+        else console.table(res);
+        mainMenu()});
             break;
         case 'viewEmployees':
         query = `SELECT * FROM employee`;
         connection.query(query, (err, res) => {
         if (err) throw err;
-        else console.table(res)});
+        else console.table(res)
+        mainMenu()});
             break;
         case 'updateEmployee':
         query = `SELECT CONCAT(first_name, " ", last_name) AS name FROM employee`;
@@ -156,6 +163,7 @@ const sqlQuery = (request, data) => {
             (err, res) => {
               if (err) throw err
               else console.log(res)
+              mainMenu();
             }
         );
         });
@@ -165,6 +173,7 @@ const sqlQuery = (request, data) => {
     
         default:
             console.log(request, data)
+            mainMenu();
             break;
     }
 }

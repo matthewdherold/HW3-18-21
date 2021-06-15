@@ -38,11 +38,11 @@ const sqlQuery = (request, data) => {
                 },
                 {
                     name: 'department_id',
-                    type: 'list',
+                    type: 'input',
                     message: 'What is the department ID?'
                 }
         ]).then((choices) => {
-                query = `INSERT INTO role`;
+                query = `INSERT INTO role SET ?`;
                 let newRole = {
                     title: choices.title,
                     salary: choices.salary,
@@ -68,7 +68,7 @@ const sqlQuery = (request, data) => {
                     message: 'What is the their last name?'
                 },
                 {
-                    name: 'roleid',
+                    name: 'role_id',
                     type: 'input',
                     message: 'What is their role ID?'
                 },
@@ -77,7 +77,7 @@ const sqlQuery = (request, data) => {
             let newEmp = {
                 first_name: choices.fn,
                 last_name: choices.ln,
-                role_id: choices.roleid,
+                role_id: choices.role_id,
                 manager_id: null
             }
             inquirer

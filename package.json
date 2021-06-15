@@ -1,8 +1,27 @@
 {
+  "name": "HW3-18-21",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthewdherold/HW3-18-21.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "console.table": "^0.10.0",
     "dotenv": "^10.0.0",
-    "inquirer": "^8.1.0",
-    "mysql": "^2.18.1"
-  }
+    "inquirer": "^8.1.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5"
+  },
+  "bugs": {
+    "url": "https://github.com/matthewdherold/HW3-18-21/issues"
+  },
+  "homepage": "https://github.com/matthewdherold/HW3-18-21#readme"
 }
